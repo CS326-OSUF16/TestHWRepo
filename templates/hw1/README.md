@@ -112,7 +112,7 @@ The repository that you have forked has following file structure
 
 In this course, we will be following these conventions:
 
-- All of the assignment files will be provided in the templates folder.  Your first course of action for each assignment should be to copy (using UNIX cp) the files from the templates directory to the submissions directory.  ***You should never alter files under submissions*** - in a future assignment, we will learn how to pull from instructors repository to get new assignments as the are available.
+- All of the assignment files will be provided in the templates folder.  Your first course of action for each assignment should be to copy (using UNIX `cp`) the files from the templates directory to the submissions directory.  ***You should never alter files under submissions*** - in a future assignment, we will learn how to pull from instructors repository to get new assignments as the are available.
 - The submissions directory should contain your code, after adding all the files from the corresponding templates directory, you are free to alter the code as you wish. You should do your work against the master branch until you're ready to submit your code
 - When you are ready to submit your code, you will create a new branch called `hwX`, where X is the number of the assignment.  The instructor and TAs will pull from this branch on GitHub and your submission date will be the timestamp of the last commit on that branch. Do not commit to this branch after the deadline!
 - The walkthrough below should be similar for future assignments although you'll be working on multiple files.
@@ -122,26 +122,32 @@ Your final task is to alter the submissions/hw1/README.md file, add a new branch
 
 First, check the current branch. We currently only have one branch called master, this is the default branch.
 
+```
 $ git branch
 * master
+```
 
 Now, edit the  submissions/hw1/README.md file to read "This is my submission!" and then commit the change
 
+```
 $ git add submissions/hw1/README.md 
 $ git commit -m "Changed assignment 1 readme"
+```
 
 We've made the necessary changes and commited them, but now we'll create a branch to serve as the submission
 
+```
 $ git branch hw1
 $ git branch
   hw1
 * master
+```
 
-Note that `branch` does not switch the current branch, so any edits you make after its creation are applied to the master branch.  The `checkout` command is used to switch branches, but we won't use this here.  To submit the branch to github
+The `*` indicates the current branch on the filesystem - note that `branch` does not switch the current branch, so any edits you make after its creation are applied to the master branch.  The `checkout` command is used to switch branches, but we won't use this here.  To submit the branch to github
 
 $ git push origin hw1
 
-Refresh your GitHub page - in the upper left hand corner, click the branch dropdown: you should see a new hw1 branch - this is your submission. In future assignments, this will signal you've completed the homework - you may want to double check the submitted files.  For this assignment, we'll make one more change to the master branch. Make sure you're currently working on master 
+Refresh your GitHub page - in the upper left hand corner, click the branch dropdown: you should see a new hw1 branch - this is your submission. In future assignments, this will signal you've completed the homework - you may want to double check the submitted files.  For this assignment, we'll make one more change to the `master` branch. Make sure you're currently working on master 
 
 $ git checkout master
 $ git add submissions/hw1/README.md
@@ -150,7 +156,7 @@ $ git push origin master
 
 Switch back and forth between the `hw1` and `master` branches to ensure the submissions/hw1/README.md is different
 
-PART IV - Branching 
+## PART IV - Branching 
 
 Visit http://learngitbranching.js.org/?NODEMO and repeat console commands presented in Part III.   Some of these will have no effect on the visualization.
 
