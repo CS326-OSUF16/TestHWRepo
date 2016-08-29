@@ -88,8 +88,12 @@ $ git push origin master
 
 In GitHub, your README.md will be rendered on your project page. Reload the page and ensure that README.md has your name. Keep in mind that any commits to a local repository are not made in a remote repository until you commit 
 
+## Part III - Branching practice
 
-## Part III - Branching
+Visit [this page](http://learngitbranching.js.org) and complete the first set of levels (Introduction Sequence)
+
+
+## Part IV - Branching
 
 The repository that you have forked has following file structure
 
@@ -118,7 +122,11 @@ In this course, we will be following these conventions:
 - The walkthrough below should be similar for future assignments although you'll be working on multiple files.
 
 
-Your final task is to alter the submissions/hw1/README.md file, add a new branch called hw1 and then submit it to GitHub
+Your final task is to 
+   * create a new branch called `hw1`
+   * change the submissions/hw1/README.md file on branch `hw1` to read "This is my submission!"
+   * change the submissions/hw1/README.md file on branch `master` to read "This is my working copy!"
+   * commit both branches and push both to GitHub
 
 First, check the current branch. We currently only have one branch called master, this is the default branch.
 
@@ -127,14 +135,7 @@ $ git branch
 * master
 ```
 
-Now, edit the  submissions/hw1/README.md file to read "This is my submission!" and then commit the change
-
-```
-$ git add submissions/hw1/README.md 
-$ git commit -m "Changed assignment 1 readme"
-```
-
-We've made the necessary changes and commited them, but now we'll create a branch to serve as the submission
+The `*` indicates the current branch on the filesystem. Let's add a new branch and start working on `hw1`
 
 ```
 $ git branch hw1
@@ -142,40 +143,51 @@ $ git branch
   hw1
 * master
 ```
+Note that `branch` does not switch the current branch, so any edits you make after its creation are applied to the master branch.  The `checkout` command is used to switch branches
 
-The `*` indicates the current branch on the filesystem - note that `branch` does not switch the current branch, so any edits you make after its creation are applied to the master branch.  The `checkout` command is used to switch branches, but we won't use this here.  To submit the branch to github
+```
+$ git checkout hw1
+```
+ 
+ Now, edit the  submissions/hw1/README.md file to read "This is my submission!" and then commit the change.
+ 
+```
+$ git add submissions/hw1/README.md 
+$ git commit -m "Changed assignment 1 readme"
+```
 
+To submit the branch to github
+
+```
 $ git push origin hw1
+```
 
-Refresh your GitHub page - in the upper left hand corner, click the branch dropdown: you should see a new hw1 branch - this is your submission. In future assignments, this will signal you've completed the homework - you may want to double check the submitted files.  For this assignment, we'll make one more change to the `master` branch. Make sure you're currently working on master 
+Refresh your GitHub page - in the upper left hand corner, click the branch dropdown: you should see a new `hw1` branch - this is your submission. In future assignments, this will signal you've completed the homework - you may want to double check the submitted files.  For this assignment, we'll make one more change to the `master` branch. Make sure you're currently working on master 
 
+
+```
 $ git checkout master
 $ git add submissions/hw1/README.md
+
+```
+
+Change the submissions/hw1/README.md file on branch `master` to read "This is my working copy!" and commit the master branch
+
+```
 $ git commit -m "Changed assignment 1 readme again!"
 $ git push origin master
+```
 
-Switch back and forth between the `hw1` and `master` branches to ensure the submissions/hw1/README.md is different
+Switch back and forth between the `hw1` and `master` branches on your Github project page to ensure the submissions/hw1/README.md is different
 
-## PART IV - Branching 
 
-Visit http://learngitbranching.js.org/?NODEMO and repeat console commands presented in Part III.   Some of these will have no effect on the visualization.
-
-Take a screenshot (or recreate, it should be small) the diagram created when you've finished. Add submissions/hw1/diagram.<EXT> (where EXT is one of {JPG,PDF,TXT}) to the `hw1` branch by
-
- - performing a checkout of the `hw1` branch
- - adding the file above
- - commiting locally
- - pushing the `hw1` branch
-
-This is also a great way to make changes to your submission (adding or editing files on a new `hwX` branch) .  The last commit on branch `hwX` prior to the deadline will be graded.
-
-SUBMISSION CHECKLIST
+## SUBMISSION CHECKLIST
 
 Your repository should contain
 
-- An edited README.md file as described in PART I/II
-- Two branches `hw1` and `master` each containing a modified submissions/hw1/README.md as described in PART III
-- A diagram at submissions/hw1/diagram.<EXT> as described in PART IV
+- An edited README.md file as described in Part I/II
+- Two branches `hw1` and `master` each containing a modified submissions/hw1/README.md as described in Part IV
+
 
 
 
