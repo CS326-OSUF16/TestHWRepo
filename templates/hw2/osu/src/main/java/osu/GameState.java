@@ -3,11 +3,11 @@ import java.util.Random;
 public class GameState {
     public static final int MAX_HAND = 500;
     public static final int MAX_DECK =  500;
-    
+    public static final int MAX_PLAYERS = 4;    
 
     public int numPlayers; //number of players
-    public int supplyCount[];
-    public int embargoTokens[];
+    public Map<Card,Integer> supplyCount  = new HashMap<Card,Integer>();
+    public Map<Card,Integer> embargoTokens  = new HashMap<Card,Integer>();
     public int outpostPlayed;
     public int outpostTurn;
     public int whoseTurn;
@@ -15,15 +15,15 @@ public class GameState {
     public int numActions; /* Starts at 1 each turn */
     public int coins; /* Use as you see fit! */
     public int numBuys; /* Starts at 1 each turn */
-    public int hand[][];
-    public int handCount[];
-    public int deck[][];
-    public int deckCount[];
-    public int discard[][];
-    public int discardCount[];
-    public int playedCards[];
-    public int playedCardCount;
+    public Hand hand[]  = new ArrayList<Card>[MAX_PLAYERS];
+
+    public Hand deck[]  = new ArrayList<Card>[MAX_PLAYERS];
+    public Hand discard[]  = new ArrayList<Card>[MAX_PLAYERS];
+    public Hand playedCards;
 
     public Random rand;
+
+
+    
 };
 
