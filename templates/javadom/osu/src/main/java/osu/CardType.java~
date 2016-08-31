@@ -3,6 +3,7 @@ package osu;
 public enum Card
 {
 
+
     curse(0,true),
     estate(1,true),
     duchy(2,true),
@@ -39,16 +40,23 @@ public enum Card
     treasure_map(26);
 
 
-    public final int v;
-    Card(int v){
+    protected final int id;
+
+    CardType(int id){
 	return new Card(v,isRegular);
     }
-    Card(int v,boolean isRegular ){
-	this.id = v;
+
+    CardType(int id,boolean isRegular ){
+	this.id = id;
 	this.isRegular = true;
     }
+
+    public Card generateCard(){
+	return new Card(this);
+    }
+    
     public int getId(){
-	return v;
+	return id;
     }
 
 }

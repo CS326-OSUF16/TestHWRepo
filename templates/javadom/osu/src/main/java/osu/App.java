@@ -14,23 +14,6 @@ public class App
     public static final int MAX_DECK =  500;
     public static final int MAX_PLAYERS = 4;
 
-    /*
-    int[] kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
-		       int k8, int k9, int k10) {
-	int[] k = new int[10];
-	k[0] = k1;
-	k[1] = k2;
-	k[2] = k3;
-	k[3] = k4;
-	k[4] = k5;
-	k[5] = k6;
-	k[6] = k7;
-	k[7] = k8;
-	k[8] = k9;
-	k[9] = k10;
-	return k;
-    }
-    */
 
     App(int numPlayers, List<Card> kingdomCards,Integer randomSeed) throws Exception {
 	App(numPlayers,kingdomCards,randomSeed,new GameState())
@@ -62,7 +45,7 @@ public class App
 	    {
 		for (j = 0; j < 10; j++)
 		    {
-			if (j != i && kingdomCards.get(j) == kingdomCards.get(i))
+			if (j != i && kingdomCards.get(j).type == kingdomCards.get(i).type)
 			    {
 				throw new Exception("Duplicate Kingdom card discovered!");
 			    }
@@ -107,12 +90,12 @@ public class App
 	state.supplyCount.set(Card.gold, 30);
 
 	//set number of Kingdom cards
-	for (Card c : Card.values()) {
-	    if(!c.isRegular())  continue;
+	for (Card ct : CardType.values()) {
+	    if(!ct.isRegular())  continue;
 	    for (j = 0; j < 10; j++){
-		if (kingdomCards[j] == c){   
+		if (kingdomCards[j].type == ct){   
 				//check if card is a 'Victory' Kingdom card
-		    if (kingdomCards[j].equals( Card.great_hall ) || kingdomCards[j].equals( Card.gardens ))
+		    if (kingdomCards[j].type == Card.great_hall  || kingdomCards[j] == Card.gardens )
 			{
 			    if (numPlayers == 2){ 
 				state.supplyCount.set(c, 8); 
@@ -151,9 +134,9 @@ public class App
 	}
 
 	//set embargo tokens to 0 for all supply piles
-	for (Card c : Card.values()) {
-	    if(!c.isRegular())
-		state.embargoTokens.set(c, 0);
+	for (CardType ct : Card.values()) {
+	    if(!ct.isRegular())
+		state.embargoTokens.set(ct, 0);
 	}
 
 	//initialize first player's turn
@@ -179,7 +162,7 @@ public class App
 
     int getCost(Card c)
     {
-	switch( c.getId() ) 
+	switch( c.type.getId() ) 
 	    {
 	    case 0: //Card.curse.v:
 		return 0;
@@ -253,78 +236,7 @@ public class App
 	return state.supply.length();
     }
 
-    void discardCard(int handPos, int currentPlayer, GameState state, int trashFlag){
-	//if card is not trashed, added to Played pile 
-	if (trashFlag < 1)
-	    {
-		//add card to played pile
-		state.playedCards[state.playedCardCount].state.hand[currentPlayer][handPos]; 
-		state.playedCardCount++;
-	    }
-	
-	//set played card to -1
-	state.hand[currentPlayer][handPos] = -1;
-	
-	//remove card from player's hand
-	if ( handPos == (state.handCount[currentPlayer] - 1) ) 	//last card in hand array is played
-	    {
-		//reduce number of cards in hand
-		state.handCount[currentPlayer]--;
-	    }
-	else if ( state.handCount[currentPlayer] == 1 ) //only one card in hand
-	    {
-		//reduce number of cards in hand
-		state.handCount[currentPlayer]--;
-	    }
-	else 	
-	    {
-		//replace discarded card with last card in hand
-		state.hand[currentPlayer][handPos] = state.hand[currentPlayer][ (state.handCount[currentPlayer] - 1)];
-		//set last card to -1
-		state.hand[currentPlayer][state.handCount[currentPlayer] - 1] = -1;
-		//reduce number of cards in hand
-		state.handCount[currentPlayer]--;
-	    }
-	
 
-    }
-
-    int gainCard(int supplyPos, GameState state, int toFlag, int player){
-	//Note: supplyPos is enum of choosen card
-	
-	//check if supply pile is empty (0) or card is not used in game (-1)
-	if ( supplyCount(supplyPos, state) < 1 )
-	    {
-		return -1;
-	    }
-	
-	//added card for [whoseTurn] current player:
-	// toFlag = 0 : add to discard
-	// toFlag = 1 : add to deck
-	// toFlag = 2 : add to hand
-
-	if (toFlag == 1)
-	    {
-		state.deck[ player ][ state.deckCount[player] ] = supplyPos;
-		state.deckCount[player]++;
-	    }
-	else if (toFlag == 2)
-	    {
-		state.hand[ player ][ state.handCount[player] ] = supplyPos;
-		state.handCount[player]++;
-	    }
-	else
-	    {
-		state.discard[player][ state.discardCount[player] ] = supplyPos;
-		state.discardCount[player]++;
-	    }
-	
-	//decrease number in supply pile
-	state.supplyCount[supplyPos]--;
-	 
-	return 0;
-
-    }
 
     int isGameOver(GameState state)
     {
