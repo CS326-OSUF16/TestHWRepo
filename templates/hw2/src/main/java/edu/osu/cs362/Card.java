@@ -1,4 +1,4 @@
-package osu;
+package edu.osu.cs362;
 
 public enum Card{
 
