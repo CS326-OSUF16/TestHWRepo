@@ -8,33 +8,16 @@ import static org.junit.Assert.*;
  * Unit test for simple App.
  */
 public class HandTest 
-    extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public HandTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( HandTest.class );
-    }
 
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
+    @TestCase
+    public void testSimple()
     {
-	Hand hb = new Hand(Card.adventurer,Card.curse,Card.copper);
-	GameState gs = new GameState();
+	Hand hb = new Hand();
+	hb.add
 	hb.discardCard(1, gs, true);
 	assertEquals(hb.getHandCards().size(),2);
     }

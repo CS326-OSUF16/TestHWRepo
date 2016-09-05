@@ -1,50 +1,62 @@
 package edu.osu.cs362;
 
-public enum Card{
+package edu.osu.blackjack;
 
-    curse(0),
-    estate(1),
-    duchy(2),
-    province(3),
+import java.util.ArrayList;
+import java.util.List;
 
-    copper(4),
-    silver(5),
-    gold(6),
+public class Card {
+      
+    public final Face face;
+    public final Suit suit;
+    private boolean visible;
 
-    adventurer(7),
-    /* If no/only 1 treasure found, stop when full deck seen */
-    council_room(8),
-    feast(9), /* choice1 is supply # of card gained) */
-    gardens(10),
-    mine(11), /* choice1 is hand# of money to trash, choice2 is supply# of
-		 money to put in hand */
-    remodel(12), /* choice1 is hand# of card to remodel, choice2 is supply# */
-    smithy(13),
-    village(14),
+    public enum Face {
+	TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(
+									     9), TEN(10), JACK(10), QUEEN(10), KING(10), ACE(11);
 
-    baron(15), /* choice1: boolean for discard of estate */
-    /* Discard is always of first (lowest index) estate */
-    great_hall(16),
-    minion(17), /* choice1:  1 = +2 coin, 2 = redraw */
-    steward(18), /* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) */
-    tribute(19),
+	private int value;
 
-    ambassador(20), /* choice1 = hand#, choice2 = number to return to supply */
-    cutpurse(21),
-    embargo(22), /* choice1 = supply# */
-    outpost(23),
-    salvager(24), /* choice1 = hand# to trash */
-    sea_hag(25),
-    treasure_map(26);
+	Face(int value) {
+	    this.value = value;
+	}
 
-
-    public final int id;
-    Card(int v){
-	this.id = v;
+	public int getValue() {
+	    return this.value;
+	}
     }
 
-    public int getId(){
-	return id;
+    public enum Suit {
+	CLUB, DIAMOND, HEART, SPADE;
     }
 
+    public Card(Face face, Suit suit){
+	this.face = face;
+	this.suit = suit;
+    }
+
+    public String toString(){
+	return this.face.name() + this.suit.name();
+	  
+    }
+
+    private static final List<Card> protoDeck = new ArrayList<Card>();
+    static {
+	for (Suit suit : Suit.values())
+	    for (Face face : Face.values())
+		protoDeck.add(new Card(face, suit));
+    }
+
+    public static ArrayList<Card> newDeck() {
+	return new ArrayList<Card>(protoDeck); // Return copy of prototype deck
+    }
+
+    public boolean isVisible() {
+	return this.visible;
+    }
+    
+    public void setVisible(boolean b){
+	this.visible = b;
+    }
+    
 }
