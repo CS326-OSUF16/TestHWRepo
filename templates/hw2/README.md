@@ -3,7 +3,7 @@
 ## Preliminaries
 
 * You'll first need to download and unzip Maven 3.3.9 if you haven't done so already. We will be using the Maven `mvn` command frequently and we highly recommend you create an alias to the `<maven directory>/bin` in your *NIX shell.
-* Get the latest files from the instructor's repository by running the `bin/sync` script
+* Get the latest files from the instructor's repository by running the `bin/sync` script. 
 * Copy the contents `templates/hw2` to `submissions/hw2`.  `git add` the copied files and then commit to your local repository
 
 ## Part 1) Warm up
@@ -17,9 +17,8 @@ Create a new method called `testX` where `X` is the name of each of the four fun
 
 ## Part 2) The blackjack game
 
-***Something something story developer leave***
-
-The developer left a note that there was a serious bug that was
+It's your first day as a developer on a team that writes code to support a series of card games. 
+The team leave left a note that there was a serious bug that was
 affecting a previous version of certain card games. During the
 execution of a game, it appeared as if cards within the deck switched
 positions. and that they suspected the error was somewhere in either
@@ -47,8 +46,8 @@ functionality you might test.  Similar test cases (e.g., testing a
 class constructor with differnet parameters) can be grouped in the
 same method
 
-- Write a suite of JUnit tests to test the Card class
-- Write a suite of JUnit tests for each method of the Hand class **excluding the `permute` function**. 
+- Write a suite of JUnit tests to test each method of the Card class
+- Write a suite of JUnit tests  to test each method of the Hand class **excluding the `permute` function**. 
 
 ## Part 2b) The bug
 
@@ -61,6 +60,8 @@ If you were able to find an issue like the one described above, answer the follo
    - ...a deck that is shuffled by removing cards from a random place in the deck and adding them back via method `add`?
 
 If you were unable describe your approach to developing your test suite and justify why the class is correct for the cases above
+
+
 
 ## What to submit
 
