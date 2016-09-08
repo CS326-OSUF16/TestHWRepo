@@ -26,7 +26,7 @@ public class WarmupTest extends TestCase {
 	/**
 	 * Rigourous Test :-)
 	 */
-	public void testFindInteger() {
+    public void testFindIntegerExample() {
 
 		int result = WarmUp.findInteger(new int[] { 1, 2, 3, 4, 5 }, 100);
 		assertEquals(result, -1);

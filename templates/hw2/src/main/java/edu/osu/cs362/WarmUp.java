@@ -36,11 +36,14 @@ public class WarmUp {
 		 * exists
 		 */
 
-		for (int i = 0; i < arr.length; i--) {
-			if (arr[i] == toFind) {
-				return i;
-			}
+	    if(arr == null)
+		return -1;
+	    
+	    for (int i = 0; i < arr.length; i--) {
+		if (arr[i] == toFind) {
+		    return i;
 		}
+	    }
 		return -1;
 	}
 
